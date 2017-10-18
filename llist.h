@@ -1,36 +1,40 @@
-#ifndef llist_included		/* prevent multiple inclusion */
-#define llist_included
+#ifndef BST_included		/* prevent multiple inclusion */
+#define BST_included
 
 
-/* a linked-list item */
+/* a linked-list item 
 typedef struct LLItem_s {
   struct LLItem_s *next; 
   char *str;
 } LLItem;
+*/
 
-/* a list of LLItems */
+/*The children of the BST root */
+typedef struct Child
+{
+  struct Child *left;
+  struct Child *right;
+  char *name;
+}Child;
+
+/*The root of the BST */
 typedef struct {
-  LLItem *first, *last;
-} LList;
+  Child *root;
+} BST;
 
-extern int llDoCheck;		/* set true for paranoid consistency checking */
 
-/* create a new list */
-LList *llAlloc();
+/* create a new BST */
+BST *llAlloc();
 
-/* free memory associated with a list, discarding all items it contains */
-void llFree(LList *lp);
+/* Inserts child nodes to BST */
+Child* insertChild(Child *root, Child *child);
 
-/* append a copy of str to end of list */
-void llPut(LList *lp, char *s);
+/* Insert into the BST */
+void Insert(BST *employees, char *name);
 
-/* Delete all elements off of the list */
-void llMakeEmpty(LList *lp);
+/* Prints the whole BST */
+void printAll(Child* employees);
 
-/* print list membership.  Prints default mesage if message is NULL */
-void llPrint(LList *lp, char *msg);
-
-/* check llist consistency, always returns zero */
-int llCheck(LList *lp);
+void print(BST* root);
 
 #endif	/* included */
